@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserManageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +23,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/admin/dashboard', [DashboardController::class, 'index']);
+Route::get('admin/dashboard', [DashboardController::class, 'index']);
+Route::get('admin/user-manage', [UserManageController::class, 'index']);
+Route::post('admin/user/store', [UserManageController::class, 'store']);
+
+

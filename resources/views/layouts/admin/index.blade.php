@@ -3,7 +3,7 @@
 @include('layouts.admin.navbar')
 @include('layouts.admin.sidebar')
 <main id="main" class="main">
-@yield('section')
+@yield('content')
 </main>
 @include('layouts.footer')
 

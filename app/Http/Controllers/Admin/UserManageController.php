@@ -1,17 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\UserRole;
 
-class StudentController extends Controller
+class UserManageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
+        $usertype = UserRole::all();
+      return view('admin.user-manage.index', compact('usertype'));
     }
 
     /**
@@ -27,7 +31,20 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'fullname' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'user_role_id' => 'required',
+            'status' => 'required',
+        ]);
+
+        // Create a new user using the validated data
+        User::create($validatedData);
+
+        // Perform any additional actions if needed
+
+        return redirect('admin/user-manage');
     }
 
     /**
