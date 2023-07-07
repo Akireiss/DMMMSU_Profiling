@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="{{ url('admin/dashboard') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -37,6 +37,16 @@
             <i class="bi bi-gear"></i><span>Settings</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="{{ url('admin/user-view') }}">
+                  <i class="bi bi-circle"></i><span>View Account</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ url('admin/user-add') }}">
+                  <i class="bi bi-circle"></i><span>Add Account</span>
+                </a>
+              </li>
             <li>
               <a href="profile.html">
                 <i class="bi bi-circle"></i><span>Profile</span>

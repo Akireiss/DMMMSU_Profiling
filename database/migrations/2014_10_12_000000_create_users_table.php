@@ -16,14 +16,15 @@ return new class extends Migration
             $table->string('fullname');
             $table->string('username')->unique();
             $table->string('password');
-            $table->unsignedBigInteger('user_role_id');
+            $table->unsignedBigInteger('user_role_id')->nullable();
             $table->integer('user_status');
             $table->foreign('user_role_id')->references('id')
-            ->on('user_type');
+                ->on('user_type')->onDelete('SET NULL');
             $table->rememberToken();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

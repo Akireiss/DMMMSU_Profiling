@@ -24,7 +24,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('admin/dashboard', [DashboardController::class, 'index']);
-Route::get('admin/user-manage', [UserManageController::class, 'index']);
 Route::post('admin/user/store', [UserManageController::class, 'store']);
 
-
+//Account setting
+Route::get('admin/user-add', [UserManageController::class, 'create']);
+Route::get('admin/user-view', [UserManageController::class, 'index']);

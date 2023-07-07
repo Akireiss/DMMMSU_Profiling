@@ -14,38 +14,39 @@ class UserManageController extends Controller
      */
     public function index()
     {
-        $usertype = UserRole::all();
-      return view('admin.user-manage.index', compact('usertype'));
+        $users = User::all();
+      return view('admin.user-manage.index', compact('users'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        $usertype = UserRole::with('users')->get();
+
+        return view('admin.user-manage.add', compact('usertype'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'fullname' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-            'user_role_id' => 'required',
-            'status' => 'required',
-        ]);
 
-        // Create a new user using the validated data
-        User::create($validatedData);
+public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'fullname' => 'required',
+        'username' => 'required',
+        'password' => 'required',
+        'user_role_id' => 'required',
+        'user_status' => 'required',
+    ]);
 
-        // Perform any additional actions if needed
+    User::create($validatedData);
 
-        return redirect('admin/user-manage');
-    }
+    return redirect()->back()->with('success', 'User created successfully.');
+}
 
     /**
      * Display the specified resource.
